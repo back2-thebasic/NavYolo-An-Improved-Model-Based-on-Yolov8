@@ -1,0 +1,12 @@
+com.tencent.yolov8ncnn
+array cpugpu_array
+array model_array
+id buttonSwitchCamera
+id cameraview
+id spinnerCPUGPU
+id spinnerModel
+id textViewLatency
+layout main
+string app_name
+string latency_default
+string switch_camera

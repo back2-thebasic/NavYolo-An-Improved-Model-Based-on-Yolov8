@@ -1,0 +1,11 @@
+ninja: Entering directory `E:\Android\ncnn-android-yolov8\app\.cxx\Debug\535e426r\x86_64'
+[1/3] Building CXX object CMakeFiles/yolov8ncnn.dir/yolov8ncnn.cpp.o
+[2/3] Building CXX object CMakeFiles/yolov8ncnn.dir/yolo.cpp.o
+E:/Android/ncnn-android-yolov8/app/src/main/jni/yolo.cpp:249:41: warning: data argument not used by format string [-Wformat-extra-args]
+    sprintf(parampath, "NavYolo.param", modeltype);
+                       ~~~~~~~~~~~~~~~  ^
+E:/Android/ncnn-android-yolov8/app/src/main/jni/yolo.cpp:250:39: warning: data argument not used by format string [-Wformat-extra-args]
+    sprintf(modelpath, "NavYolo.bin", modeltype);
+                       ~~~~~~~~~~~~~  ^
+2 warnings generated.
+[3/3] Linking CXX shared library E:\Android\ncnn-android-yolov8\app\build\intermediates\cxx\Debug\535e426r\obj\x86_64\libyolov8ncnn.so

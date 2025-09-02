@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ncnn-yolov8</string>
+
+    <string name="switch_camera">切换摄像头</string>
+    <string name="latency_default">延迟: -- ms</string>
+
+    <string-array name="model_array">
+        <item>yolov8n</item>
+        <item>NavYolo</item>
+    </string-array>
+    <string-array name="cpugpu_array">
+        <item>CPU</item>
+        <item>GPU</item>
+    </string-array>
+</resources>

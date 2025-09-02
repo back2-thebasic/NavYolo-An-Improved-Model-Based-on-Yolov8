@@ -1,0 +1,41 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# YOLOv8 object detection model with P3-P5 outputs. For Usage examples see https://docs.ultralytics.com/tasks/detect
+
+# Parameters
+nc: 80  # number of classes
+depth_multiple: 0.33
+width_multiple: 0.25
+max_channels: 1024
+
+# YOLOv8.0n backbone
+backbone:
+  - [-1, 1, ShuffleNetV2, [24, 1]]  # 0-P1/2   # 实际特征图输出大小变为：320 * 320
+  - [-1, 1, ShuffleNetV2, [24, 2]]  # 1-P2/3   # 实际特征图输出大小变为：160 * 160
+  - [-1, 1, ShuffleNetV2, [116, 3]]  # 2-P3/8   # 实际特征图输出大小变为：80 * 80
+  - [-1, 1, ShuffleNetV2, [232, 4]]  # 3-P4/16  # 实际特征图输出大小变为：40 * 40
+  - [-1, 1, ShuffleNetV2, [1024, 5]] # 4-P5/32  # 实际特征图输出大小变为：20 * 20
+
+# SlimNeck (VoVGSCSP based) head
+head:
+  # Upsample and concat with P4 (40x40)
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 5 - 40x40
+  - [[-1, 3], 1, Concat, [1]]                   # 6 - cat backbone P4 (40x40)
+  - [-1, 3, VoVGSCSP, [512]]                    # 7 - 40x40
+
+  # Upsample and concat with P3 (80x80)
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 8 - 80x80
+  - [[-1, 2], 1, Concat, [1]]                   # 9 - cat backbone P3 (80x80)
+  - [-1, 3, VoVGSCSP, [256]]                    # 10 - (P3/8-small) 80x80
+
+  # Downsample and concat with P4 (40x40)
+  - [-1, 1, GSConv, [256, 3, 2]]               # 11 - 40x40
+  - [[-1, 7], 1, Concat, [1]]                   # 12 - cat head P4 (40x40)
+  - [-1, 3, VoVGSCSP, [512]]                    # 13 - (P4/16-medium) 40x40
+
+  # Downsample and concat with P5 (20x20)
+  - [-1, 1, GSConv, [512, 3, 2]]               # 14 - 20x20
+  - [[-1, 4], 1, Concat, [1]]                   # 15 - cat head P5 (20x20)
+  - [-1, 3, VoVGSCSP, [1024]]                   # 16 - (P5/32-large) 20x20
+
+  # Detect layers
+  - [[10, 13, 16], 1, Detect, [nc]]  # Detect(P3, P4, P5)

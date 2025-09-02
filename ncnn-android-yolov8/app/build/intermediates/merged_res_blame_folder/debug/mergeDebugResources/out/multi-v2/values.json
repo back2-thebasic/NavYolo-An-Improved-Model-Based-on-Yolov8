@@ -1,0 +1,51 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\LENOVO\\.gradle\\daemon\\8.9\\com.tencent.yolov8ncnn.app-mergeDebugResources-2:\\values\\values.xml",
+            "map": [
+                {
+                    "source": "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,5,4",
+                        "startColumns": "-1,-1,-1,4,4",
+                        "startOffsets": "-1,-1,-1,153,105",
+                        "endColumns": "-1,-1,-1,53,47",
+                        "endOffsets": "-1,-1,-1,202,148"
+                    },
+                    "to": {
+                        "startLines": "2,6,10,11,12",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,164,268,317,371",
+                        "endLines": "5,9,10,11,12",
+                        "endColumns": "19,19,48,53,47",
+                        "endOffsets": "159,263,312,366,414"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.tencent.yolov8ncnn.app-mergeDebugResources-2:/values/values.xml",
+            "map": [
+                {
+                    "source": "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "-1,7,-1,-1,-1",
+                        "startColumns": "-1,4,-1,-1,-1",
+                        "startOffsets": "-1,208,-1,-1,-1",
+                        "endLines": "-1,10,-1,-1,-1",
+                        "endColumns": "-1,19,-1,-1,-1",
+                        "endOffsets": "-1,319,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,6,10,11,12",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,164,280,329,383",
+                        "endLines": "5,9,10,11,12",
+                        "endColumns": "19,19,48,53,47",
+                        "endOffsets": "159,275,324,378,426"
+                    }
+                }
+            ]
+        }
+    ]
+}

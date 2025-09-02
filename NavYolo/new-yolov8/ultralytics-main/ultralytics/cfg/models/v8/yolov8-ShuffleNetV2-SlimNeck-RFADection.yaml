@@ -1,0 +1,34 @@
+# YOLOv8-Lite 配置：ShuffleNetV2 Backbone + SlimNeck + DetectRFAConv
+nc: 80  # number of classes
+depth_multiple: 0.33
+width_multiple: 0.25
+max_channels: 1024
+
+# Backbone 使用 ShuffleNetV2 模块
+backbone:
+  - [-1, 1, ShuffleNetV2, [24, 1]]   # 0-P1/2   -> 320x320
+  - [-1, 1, ShuffleNetV2, [24, 2]]   # 1-P2/4   -> 160x160
+  - [-1, 1, ShuffleNetV2, [116, 3]]  # 2-P3/8   -> 80x80
+  - [-1, 1, ShuffleNetV2, [232, 4]]  # 3-P4/16  -> 40x40
+  - [-1, 1, ShuffleNetV2, [1024, 5]] # 4-P5/32  -> 20x20
+
+# SlimNeck（基于 VoVGSCSP 和 GSConv）
+head:
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 5 - 上采样 -> 40x40
+  - [[-1, 3], 1, Concat, [1]]                   # 6 - cat backbone P4
+  - [-1, 3, VoVGSCSP, [512]]                    # 7 - 40x40
+
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]  # 8 - 上采样 -> 80x80
+  - [[-1, 2], 1, Concat, [1]]                   # 9 - cat backbone P3
+  - [-1, 3, VoVGSCSP, [256]]                    # 10 - 80x80 (P3-small)
+
+  - [-1, 1, GSConv, [256, 3, 2]]                # 11 - 下采样 -> 40x40
+  - [[-1, 7], 1, Concat, [1]]                   # 12 - cat P4
+  - [-1, 3, VoVGSCSP, [512]]                    # 13 - 40x40 (P4-medium)
+
+  - [-1, 1, GSConv, [512, 3, 2]]                # 14 - 下采样 -> 20x20
+  - [[-1, 4], 1, Concat, [1]]                   # 15 - cat P5
+  - [-1, 3, VoVGSCSP, [1024]]                   # 16 - 20x20 (P5-large)
+
+  # Detect Head 使用 DetectRFAConv
+  - [[10, 13, 16], 1, DetectRFAConv, [nc]]      # 17 - Detect(P3, P4, P5)

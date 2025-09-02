@@ -1,0 +1,33 @@
+# Combined YOLOv8 model with ShuffleNet backbone, SlimNeck neck, and DSConv head
+nc: 80  # number of classes
+depth_multiple: 0.33
+width_multiple: 0.25
+max_channels: 1024
+
+# Backbone: ShuffleNetV2
+backbone:
+  - [-1, 1, ShuffleNetV2, [24, 1]]    # 0 - P1/2   -> 320x320
+  - [-1, 1, ShuffleNetV2, [24, 2]]    # 1 - P2/4   -> 160x160
+  - [-1, 1, ShuffleNetV2, [116, 3]]   # 2 - P3/8   -> 80x80
+  - [-1, 1, ShuffleNetV2, [232, 4]]   # 3 - P4/16  -> 40x40
+  - [-1, 1, ShuffleNetV2, [1024, 5]]  # 4 - P5/32  -> 20x20
+
+# Neck: SlimNeck (VoVGSCSP)
+head:
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]      # 5 - upsample to 40x40
+  - [[-1, 3], 1, Concat, [1]]                       # 6 - concat P4
+  - [-1, 3, VoVGSCSP, [512]]                        # 7 - VoVGSCSP block
+
+  - [-1, 1, nn.Upsample, [None, 2, 'nearest']]      # 8 - upsample to 80x80
+  - [[-1, 2], 1, Concat, [1]]                       # 9 - concat P3
+  - [-1, 3, VoVGSCSP, [256]]                        # 10 - small (P3/8)
+
+  - [-1, 1, GSConv, [256, 3, 2]]                    # 11 - downsample to 40x40
+  - [[-1, 7], 1, Concat, [1]]                       # 12 - concat head P4
+  - [-1, 3, VoVGSCSP, [512]]                        # 13 - medium (P4/16)
+
+  - [-1, 1, GSConv, [512, 3, 2]]                    # 14 - downsample to 20x20
+  - [[-1, 4], 1, Concat, [1]]                       # 15 - concat P5
+  - [-1, 3, VoVGSCSP, [1024]]                       # 16 - large (P5/32)
+
+  - [[10, 13, 16], 1, DetectDSConv, [nc]]           # final DSConv head

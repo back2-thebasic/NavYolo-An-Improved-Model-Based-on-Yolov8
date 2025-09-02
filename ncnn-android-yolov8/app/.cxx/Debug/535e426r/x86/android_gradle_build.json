@@ -1,0 +1,50 @@
+{
+  "buildFiles": [
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\CMakeLists.txt",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\glslang\\glslang-config-version.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\glslang\\glslang-config.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\glslang\\glslang-targets-release.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\glslang\\glslang-targets.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\ncnn\\ncnn-release.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\ncnn\\ncnn.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\ncnn-20250503-android-vulkan\\x86\\lib\\cmake\\ncnn\\ncnnConfig.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\opencv-mobile-4.12.0-android\\sdk\\native\\jni\\abi-x86\\OpenCVConfig.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\opencv-mobile-4.12.0-android\\sdk\\native\\jni\\abi-x86\\OpenCVModules-release.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\opencv-mobile-4.12.0-android\\sdk\\native\\jni\\abi-x86\\OpenCVModules.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\opencv-mobile-4.12.0-android\\sdk\\native\\jni\\OpenCVConfig-version.cmake",
+    "E:\\Android\\ncnn-android-yolov8\\app\\src\\main\\jni\\opencv-mobile-4.12.0-android\\sdk\\native\\jni\\OpenCVConfig.cmake"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "E:\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "E:\\Android\\ncnn-android-yolov8\\app\\.cxx\\Debug\\535e426r\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "E:\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "E:\\Android\\ncnn-android-yolov8\\app\\.cxx\\Debug\\535e426r\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "yolov8ncnn::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "yolov8ncnn",
+      "output": "E:\\Android\\ncnn-android-yolov8\\app\\build\\intermediates\\cxx\\Debug\\535e426r\\obj\\x86\\libyolov8ncnn.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "E:\\Android\\Sdk\\ndk\\26.1.10909125\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "E:\\Android\\Sdk\\ndk\\26.1.10909125\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
